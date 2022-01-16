@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Emails\" />
+    <Folder Include="Instruments\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Lionheart.Application\src\Lionheart.Application.csproj" />
+    <ProjectReference Include="..\..\Lionheart.Core\src\Lionheart.Core.csproj" />
+    <ProjectReference Include="..\..\Lionheart.EntityModels\src\Lionheart.EntityModels.csproj" />
+  </ItemGroup>
+</Project>
