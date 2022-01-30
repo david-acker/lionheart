@@ -1,7 +1,7 @@
 ## Lionheart
 Extract your Robinhood trade data from your trade confirmation emails.
 
-#### Background
+### Background
 Currently Robinhood does not provide an easy or openly accessible way to export your stock/crypto trade history.
 However, some of this information can be extracted from the trade confirmation emails sent by Robinhood.
 
@@ -13,7 +13,7 @@ about the executed trade, such as:
 * The average cost per unit.
 * The notional value.
 
-##### Email Subject Lines
+#### Email Subject Lines
 For most stock and crypto trades, the confirmation emails sent by Robinhood have standard subject lines
 which allows for easy identification and filtering.
 
@@ -22,16 +22,16 @@ which allows for easy identification and filtering.
 | Stock  | "Your order has been executed" |
 | Crypto | "Order Executed"               |
 
-##### Email Body Templates
+#### Email Body Templates
 For stock trades, two different emails templates appear to be used depending on if the
 quanity traded is fractional or in a whole share amount. For crypto trades, there only
 appears to be a single email template used.
 
-#### Overall Process
+### Overall Process
 Setting Up Email Fowarding:
 1. The user creates an account and is assigned a unique alphanumeric access key.
 2. The user sets up email forwarding filter(s) for the trade confirmation emails:
-    - From Address: The Robinhood source email (noreply@robinhood.com). 
+    - From Address: The Robinhood source email (noreply<span>@</span>robinhood.com). 
     - To Address: The centralized collection email plus addressed with the user's access key (i.e., `<local-part>+<access-key>@<domain>`).
     - Subject: The expected subject line(s) of the trade confirmation emails.
   
@@ -45,12 +45,12 @@ Email Processing:
     - The individual data points (e.g., ticker, notional, quantity, etc.) are retrieved using capture groups.
 5. The resulting trade is validated and stored in the database.
 
-#### Limitations
+### Limitations
 
-##### Recurring Investments:
+#### Recurring Investments:
 Recurring investments (stock and crypto) are not currently supported as their confirmation emails 
 do not include the datetime at which the trade was executed.
 
-##### Options Trades:
+#### Options Trades:
 Option Trades are not currently supported as their confirmation emails lack some information
 about the specific option contract that was traded (e.g., strike, expiration).
