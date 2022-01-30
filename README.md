@@ -32,7 +32,7 @@ Setting Up Email Fowarding:
 1. The user creates an account and is assigned a unique alphanumeric access key.
 2. The user sets up email forwarding filter(s) for the trade confirmation emails:
     - From Address: The Robinhood source email (noreply<span>@</span>robinhood.com). 
-    - To Address: The centralized collection email plus addressed with the user's access key (i.e., <local-part>+<access-key>@<domain>).
+    - To Address: The centralized collection email plus addressed with the user's access key (i.e., `<local-part>+<access-key>@<domain>`).
     - Subject: The expected subject line(s) of the trade confirmation emails.
   
 Email Processing:

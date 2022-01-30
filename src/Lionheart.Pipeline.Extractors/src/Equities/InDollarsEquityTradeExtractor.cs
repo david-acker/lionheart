@@ -12,7 +12,7 @@ public sealed class InDollarsEquityTradeExtractor : BaseTradeExtractor<EquityTra
 
     /// <inheritdoc />
     protected override string Pattern => 
-        @"^Your market order to (buy|sell) \$([0-9,]+\.[0-9]+) of ([a-zA-Z\.]+) was executed on ([a-zA-Z]+ [0-9]{1,2}(?:st|nd|rd|th), [0-9]{4} at [0-9]{1,2}:[0-9]{2} (?:AM|PM))\. You (?:paid|received) \$[0-9,]+\.[0-9]+ for ([0-9,\.]+) shares?, at an average price of \$([0-9,]+\.[0-9]+) per share\.$";
+        @"^Your (?:market )?order to (buy|sell) \$([0-9,]+\.[0-9]+) of ([a-zA-Z\.]+) was executed on ([a-zA-Z]+ [0-9]{1,2}(?:st|nd|rd|th), [0-9]{4} at [0-9]{1,2}:[0-9]{2} (?:AM|PM))\. You (?:paid|received) \$[0-9,]+\.[0-9]+ for ([0-9,\.]+) shares?, at an average price of \$([0-9,]+\.[0-9]+) per share\.$";
 
     /// <inheritdoc />
     protected override string GetTradeDataSection(string emailBody)
@@ -23,7 +23,7 @@ public sealed class InDollarsEquityTradeExtractor : BaseTradeExtractor<EquityTra
         }
 
         // Find the start of the trade data section.
-        int tradeDataStartIndex = emailBody.IndexOf("Your market order to");
+        int tradeDataStartIndex = emailBody.IndexOf("Your ");
         if (tradeDataStartIndex == -1)
         {
             return string.Empty;
@@ -60,6 +60,7 @@ public sealed class InDollarsEquityTradeExtractor : BaseTradeExtractor<EquityTra
 
         return new EquityTradeDomainModel
         {
+            // Fractional trades can only be placed as market orders.
             OrderType = OrderType.Market,
             ExecutedAt = executedAt,
             TransactionType = transactionType,
